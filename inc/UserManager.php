@@ -25,7 +25,6 @@ class UserManager{
 						'admin' => $user->is_admin()
 					)
 				);
-			echo 'user créé';
 		}catch(Exception $e){
 			die('Erreur : '.$e->getMessage());
 		}
@@ -39,10 +38,29 @@ class UserManager{
 		$search->closeCursor();
 	
 	}
-	public function findAll(){
-		$select = 'SELECT lastName firstName from users';
+	public function findAll($col){
+		$select = 'SELECT '.$col.' from users';
 		$search=$this->bdd->query($select);
 		return $search;
+	}
+	public function update($id, $col, $newValue){
+		try{
+			$query = 'UPDATE users SET '.$col.'="'.$newValue.'" WHERE id='.$id;
+			$update = $this ->bdd->exec($query);
+		}catch(Exception $e){
+			die('Erreur : '.$e->getMessage());
+		}
+		
+	}
+	public function deleteUser($id){
+		echo '<br/>on supprime id ='.$id.'<br/>';
+		try{
+			$del = 'DELETE FROM users WHERE id='.$id;
+			$delete = $this->bdd->exec($del);
+			
+		}catch(Exception $e){
+			die('Erreur : '.$e->getMessage());
+		}
 	}
 	
 
