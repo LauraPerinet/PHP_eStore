@@ -25,6 +25,7 @@ class UserManager{
 						'admin' => $user->is_admin()
 					)
 				);
+				
 		}catch(Exception $e){
 			die('Erreur : '.$e->getMessage());
 		}
@@ -34,8 +35,10 @@ class UserManager{
 		$select = 'SELECT * FROM users where email=\''.$email.'\' and password=\''.$password.'\'';
 		$search = $this->bdd->query($select);
 		$found=$search->fetch();
+		$_SESSION['user']=$found;
 		return $found;
 		$search->closeCursor();
+		
 	
 	}
 	public function findAll($col){

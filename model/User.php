@@ -15,12 +15,14 @@ class User {
 	}
 	public function hydrate(array $data){
 		foreach($data as $key=>$value){
-				echo $key.' = '.$value.'<br/>';
 				$this->$key=$value;
 			}
 	}
 	public function update($col, $newValue){
 		$this->$col=$newValue;
+	}
+	public function disconnect(){
+		session_destroy();
 	}
 	
 	public function check_if_unique(array $list_emails){
@@ -35,9 +37,7 @@ class User {
 		echo '<br/>'.$unique.'<br/>';
 		return $unique;
 	}
-	public function disconnect(){
-		unset($this);
-	}
+
 	public function get_email(){
 			return $this->email;
 	}
