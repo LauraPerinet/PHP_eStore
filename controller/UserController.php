@@ -14,9 +14,7 @@ class userController {
     }
 
     public function login() {
-
         $page = 'login';
-
         require('./view/main.php');
     }
 	
@@ -29,7 +27,7 @@ class userController {
 				if(gettype($userData)=='array'){
 					$this->user = new User();
 					$this->user->hydrate($userData);
-					$loc='Location:index.php?ctrl=category&action=display';
+					$loc='index.php?ctrl=category&action=display';
 				}else{
 					$loc='index.php?ctrl=user&action=login&error=wrong';
 				}
@@ -42,5 +40,85 @@ class userController {
 		header('Location:'.$loc);
 
 	}
+	
+	public function logout(){
+		session_destroy();
+		header('Location:index.php');
+	}
+	public function create(){
+		$page = 'createUser';
+        require('./view/main.php');
+	}
+	public function doCreate(){
+		$data=$this->test_fields();
+		
+		if($data){
+			$data['admin']=0;
+			$user=$this->user=new User();	
+			$user->hydrate($data);
+			
+			$testIfExist=[];
+			foreach($this->userManager->findAll('*') as $line){
+				array_push($testIfExist, $line);
+			}
+			if($user->check_if_unique($testIfExist)){
+				$this->userManager->create($user);
+				$userData = $this->userManager->findOne($data['email'], $data['password']);
+				$this->user = new User();
+				$this->user->hydrate($userData);
+				
+				$loc="";
+			}else{
+				session_destroy();
+				$loc="?ctrl=user&action=create&error=exist";
+			}
+		}else{
+			$loc="?ctrl=user&action=create&error=empty";
+		}
+		
+		header('Location:index.php'.$loc);
+	}
+	private function test_fields(){
+		$data=["email"=>"", "firstName"=>"", "lastName"=>"", "city"=>"", "postalCode"=>"", "address"=>"", "password"=>""];
+		foreach($data as $key=>$value){
+			if(isset($_POST[$key]) && $_POST[$key]!=""){
+				$data[$key]=$_POST[$key];
+			}else{
+				return false;
+			}
+		}
+		return $data;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

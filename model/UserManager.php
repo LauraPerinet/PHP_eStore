@@ -21,7 +21,7 @@ class UserManager{
 						'address' => $user->get_address(),
 						'postalCode' => $user->get_postalCode(),
 						'city' => $user->get_city(),
-						'password' => $user->get_password(),
+						'password' => md5($user->get_password()),
 						'admin' => $user->is_admin()
 					)
 				);
@@ -32,7 +32,7 @@ class UserManager{
 	}
 	
 	public function findOne($email, $password){
-		$select = 'SELECT * FROM users where email=\''.$email.'\' and password=\''.$password.'\'';
+		$select = 'SELECT * FROM users where email=\''.$email.'\' and password=\''.md5($password).'\'';
 		$search = $this->bdd->query($select);
 		$found=$search->fetch();
 		$_SESSION['user']=$found;

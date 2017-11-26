@@ -1,8 +1,11 @@
+<div id="userInfo">
 <?
 if(isset($_SESSION['user'])){
-	echo "Welcome ".$_SESSION['user']['firstName'];
+	echo "<p>Welcome ".$_SESSION['user']['firstName'].'</p><p><a href="index.php?ctrl=user&action=logout">Sign out</a></p>';
+	if($_SESSION['user']['admin']==1) echo '<p><a href="index.php?ctrl=admin&action=listUser">Back Office</a></p>';
 
 }else{
-	echo '<a href="index.php?ctrl=user&action=login">Sign in</a>';
+	echo '<p><a href="index.php?ctrl=user&action=login">Sign in</a> or <a href="index.php?ctrl=user&action=create">create a new account</a><p>';
 }
 ?>
+</div>

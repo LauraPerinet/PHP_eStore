@@ -4,7 +4,7 @@ class categoryController{
 
     }
 	public function display(){
-		$page="display";
+		$page="displayCategories";
 		require('./view/main.php');
 	}
 }

@@ -1,0 +1,103 @@
+*{margin:0; padding:0; border:none;}
+html{
+	font-family:Arial, sans-serif;
+	box-sizing:border-box;
+}
+#global{
+	width:80%;
+	margin:0 auto;
+}
+
+header,#content,footer{
+	margin:10px 0;
+	background-color:#E7EBEC;
+	padding:2%;
+	box-shadow:2px 2px 2px #eee;
+}
+header{
+	display:flex;
+	justify-content:space-between;
+}
+
+#content{
+	padding:2% 5%;
+}
+
+/*_____________________________________________________________________________ CONTENT__________________________________________*/
+
+
+/*_____________________________________***** Forms******/
+.userForm {
+	width:70%;
+	margin:0 auto;
+}
+.userForm label, .userForm input{
+	display:block;
+	margin:2px 0;
+}
+.userForm input[type='text'], .userForm input[type='password'], .userForm input[type='email']{
+	margin-bottom:10px;
+	padding:5px;
+	width:100%;
+	box-shadow:inset 2px 2px 2px #eee;
+	border:1px solid #aaa;
+}
+.userForm input[type='submit']{
+	background-color:#CF126E;
+	color:#fff;
+	padding:10px 10%;
+	box-shadow:2px 2px 10px #aaa;
+	cursor:pointer;
+}
+.userForm input[type='submit']:hover{
+	background-color:#E670A9;
+}
+
+
+/*_____________________________________***** table ******/
+
+table{
+	border-collapse:collapse;
+	background-color:#F3FAFB;
+	border:2px solid #aaa;
+}
+tr{
+	border:2px solid #aaa;
+}
+th, td{
+	border-left:1px #ccc solid;
+	border-left:1px #ccc solid;
+	padding:5px 10px;
+}
+tr:nth-child(2n+0){
+	background-color:#CDDEE2;
+}
+th{
+	background-color:#CF126E;
+	color:#fff;
+}
+td{
+	font-size:0.9em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
