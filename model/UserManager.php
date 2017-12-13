@@ -36,6 +36,7 @@ class UserManager{
 		$search = $this->bdd->query($select);
 		$found=$search->fetch();
 		$_SESSION['user']=$found;
+		//print_r($found);
 		return $found;
 		$search->closeCursor();
 		
