@@ -1,8 +1,9 @@
 <?php
 session_start();
+
 require_once("model/Connection.php");
 $conn=new Connection();
-$bdd = $conn->get_connection();
+$db = $conn->get_connection();
 
 if (
 	( isset($_GET['ctrl']) && !empty($_GET['ctrl']) ) &&
@@ -13,16 +14,21 @@ if (
     $action = $_GET['action'];
 }
 else {
-
+	
     $ctrl = 'category';
     $action = 'display';
 }
-
+if(!file_exists('./controller/' . $ctrl  . 'Controller.php')){
+	$ctrl = 'category';
+    $action = 'display';
+}
 require_once('./controller/' . $ctrl  . 'Controller.php');
 
 $ctrl = $ctrl . 'Controller';
-$controller = new $ctrl($bdd);
+$controller = $ctrl::getInstance($db);
+if(!method_exists ( $controller , $action )){
+	$action="notFound";
+} 
 $controller->$action();
 
-	?>
 	

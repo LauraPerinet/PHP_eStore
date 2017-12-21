@@ -25,6 +25,13 @@ header{
 
 /*_____________________________________________________________________________ CONTENT__________________________________________*/
 
+input[type='submit']{
+	background-color:#CF126E;
+	color:#fff;
+	padding:10px 10%;
+	box-shadow:2px 2px 10px #aaa;
+	cursor:pointer;
+}
 
 /*_____________________________________***** Forms******/
 .userForm {
@@ -42,13 +49,7 @@ header{
 	box-shadow:inset 2px 2px 2px #eee;
 	border:1px solid #aaa;
 }
-.userForm input[type='submit']{
-	background-color:#CF126E;
-	color:#fff;
-	padding:10px 10%;
-	box-shadow:2px 2px 10px #aaa;
-	cursor:pointer;
-}
+
 .userForm input[type='submit']:hover{
 	background-color:#E670A9;
 }

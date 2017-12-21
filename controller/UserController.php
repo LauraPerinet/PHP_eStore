@@ -3,12 +3,19 @@ class userController {
 
 	private $userManager;
 	private $user;
+	private static $_instance;
 
-    public function __construct($db1) {
+    private function __construct($db1) {
 
 		require('./model/User.php');
 		require_once('./model/UserManager.php');
 		$this->userManager = new UserManager($db1);
+    }
+	public static function getInstance ($db) {
+        if (!(self::$_instance instanceof self))
+            self::$_instance = new self($db);
+
+        return self::$_instance;
     }
 
     public function login() {
@@ -88,6 +95,10 @@ class userController {
 			}
 		}
 		return $data;
+	}
+	public function notFound(){
+		$page="404";
+		require('./view/main.php');
 	}
 
 }
