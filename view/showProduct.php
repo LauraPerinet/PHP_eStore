@@ -4,7 +4,7 @@
 	<div>
 		<p>
 			Catégorie : 
-			<a href="index.php?ctrl=category&action=displayOne&cat=<? echo $prod->getIdCategory(); ?>"/><? echo $prod->getName(); ?></a>
+			<a href="index.php?ctrl=category&action=displayOne&cat=<? echo $prod->getIdCategory(); ?>"/><? echo $prod->getCategory(); ?></a>
 		</p>
 		<ul>
 			<?foreach($prod->getDescription() as $li){?>
@@ -13,6 +13,6 @@
 		</ul>
 		
 		<p>Prix : <? echo $prod->getPrice(); ?> €</p>
-		<p><input type="submit" value="Ajouter au panier"/></p>
+		<p><a class="btn" href="index.php?ctrl=product&action=addToController <? echo $prod->getId(); ?> ">Ajouter au panier</a></p>
 	</div>
 </div>

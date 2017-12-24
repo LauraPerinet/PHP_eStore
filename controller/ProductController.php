@@ -15,7 +15,6 @@ class ProductController {
     }
 	
 	public static function getInstance ($db) {
-		var_dump(self::$_instance);
 		if (!(self::$_instance instanceof self)){
 				self::$_instance = new self($db);
 			}
@@ -28,7 +27,6 @@ class ProductController {
 	}
 	
 	public function displayAll( $cat ){
-		echo 'coucou';
 		$list=[];
 		foreach($this->products as $prod){
 			if($prod->getIdCategory()==$cat->getId()){
@@ -67,15 +65,16 @@ class ProductController {
 	
 	private function createProducts(){
 		$list = $this->manager->findAll();
+	
 		require_once('./controller/CategoryController.php');
 		$this->categoryCtrl=CategoryController::getInstance(self::$_db);
 		
 		if(gettype($list)=="array"){
 			foreach($list as $data){
 				$prod=new Product();
-				var_dump($this->$categoryCtrl);
-				$categoryName = $this->$categoryCtrl->getOneCategory($data['id_category'])->getName();
-				$data['category']=$categoryName();
+				//var_dump($this->$categoryCtrl);
+				$categoryName = $this->categoryCtrl->getOneCategory($data['id_category'])->getName();
+				$data['category']=$categoryName;
 				$prod->hydrate($data);
 				array_push($this->products, $prod);
 			}

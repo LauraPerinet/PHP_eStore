@@ -2,7 +2,6 @@
 class ProductManager {
 	private $db;
 	public function __construct($db){
-		var_dump($this->db);
 		$this->db=$db;
 	}
 	public function findAll(){
