@@ -1,5 +1,5 @@
 <h2>Users List</h2>
-<table>
+<table class="admin">
 	<tr>
 		<th>ID</th>
 		<th>Lastname</th>

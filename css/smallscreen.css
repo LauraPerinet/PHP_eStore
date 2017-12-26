@@ -1,0 +1,42 @@
+@media screen and (max-width: 640px) {
+
+
+#header, #displayCategories,#showProduct, #billAndShip {
+	display:inherit;
+}
+#header h1 img{
+	width:60%;
+}
+#userInfo{
+	flex-direction:row;
+	justify-content:space-between;
+}
+#header #cart {
+	width:30%;
+}
+nav{
+	padding-top:20px;
+}
+#displayCategories .thumbnail{
+	display:none;
+}
+#displayCategories .category_name{
+	transform:none;
+}
+
+.smallProd{
+	width:45%;
+}
+
+#showProduct{
+	text-align:center;
+}
+#infoProduct{
+	width:100%;
+	text-align:left;
+}
+#billAndShip div{
+	width:100%;
+}
+
+}
