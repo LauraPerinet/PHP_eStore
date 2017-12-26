@@ -35,8 +35,7 @@ class UserManager{
 		$select = 'SELECT * FROM users where email=\''.$email.'\' and password=\''.md5($password).'\'';
 		$search = $this->bdd->query($select);
 		$found=$search->fetch();
-		$_SESSION['user']=$found;
-		//print_r($found);
+		
 		return $found;
 		$search->closeCursor();
 		
@@ -50,6 +49,7 @@ class UserManager{
 	public function update($id, $col, $newValue){
 		try{
 			$query = 'UPDATE users SET '.$col.'="'.$newValue.'" WHERE id='.$id;
+	
 			$update = $this ->bdd->exec($query);
 		}catch(Exception $e){
 			die('Erreur : '.$e->getMessage());
