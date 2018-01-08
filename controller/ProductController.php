@@ -105,7 +105,7 @@ class ProductController {
 		for($i=0; $i<4; $i++){
 			do{
 				$index=rand(0, count($products)-1);
-			}while($this->products[$index]->getId()==$id);
+			}while($products[$index]->getId()==$id_reserved);
 			array_push($random, $products[$index]);
 			array_splice($products, $index, 1);
 		}

@@ -28,13 +28,12 @@ class User {
 	public function check_if_unique(array $list_emails){
 		$unique=true;
 		for($i=0;$i<count($list_emails); $i++){
-			echo $list_emails[$i]['email'];
+
 			if($this->email == $list_emails[$i]['email']){
 				$unique=false;
 				break;
 			}
 		}
-		echo '<br/>'.$unique.'<br/>';
 		return $unique;
 	}
 

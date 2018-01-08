@@ -28,7 +28,7 @@ class userController {
 			if(isset($_POST['password']) && $_POST['password']!=""){
 
 				$userData = $this->userManager->findOne($_POST['email'], $_POST['password']);
-
+				echo gettype($userData);
 				if(gettype($userData)=='array'){
 					$_SESSION['user']=$userData;
 					$this->user = new User();
@@ -57,7 +57,7 @@ class userController {
 	}
 	public function doCreate(){
 		$data=$this->test_fields();
-
+		
 		if($data && $_POST['password']!=""){
 			$data['admin']=0;
 			$user=$this->user=new User();	
@@ -91,7 +91,7 @@ class userController {
 	
 	public function update(){
 		
-		$data=$this->test_fields();
+		$data=$this->test_fields("password");
 
 		if($data){
 			foreach($data as $key=>$value){
@@ -103,13 +103,15 @@ class userController {
 		require('./view/main.php');
 	}
 	
-	private function test_fields(){
-		$data=["email"=>"", "firstName"=>"", "lastName"=>"", "city"=>"", "postalCode"=>"", "address"=>""];
+	private function test_fields($ignore){
+		$data=["email"=>"", "firstName"=>"", "lastName"=>"", "city"=>"", "postalCode"=>"", "address"=>"", "password"=>""];
 		foreach($data as $key=>$value){
-			if(isset($_POST[$key]) && $_POST[$key]!=""){
-				$data[$key]=$_POST[$key];
-			}else{
-				return false;
+			if($key != $ignore){
+				if(isset($_POST[$key]) && $_POST[$key]!=""){
+					$data[$key]=$_POST[$key];
+				}else{
+					return false;
+				}
 			}
 		}
 		return $data;

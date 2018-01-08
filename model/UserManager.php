@@ -57,7 +57,6 @@ class UserManager{
 		
 	}
 	public function deleteUser($id){
-		echo '<br/>on supprime id ='.$id.'<br/>';
 		try{
 			$del = 'DELETE FROM users WHERE id='.$id;
 			$delete = $this->bdd->exec($del);

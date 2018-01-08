@@ -1,7 +1,9 @@
 var qty=document.getElementsByClassName("qty");
 var remove=document.getElementsByClassName("remove");
+
 for(let i=0; i<qty.length; i++){
 	qty[i].addEventListener("click", changeQty, true);
+	qty[i].onchange=changeQty;
 }
 for(let i=0; i<remove.length; i++){
 	remove[i].addEventListener("click", removeCartLign, true);
@@ -21,6 +23,8 @@ function changeQty(e){
 
 	xhr.send(null);
 }
+
+
 function removeCartLign(e){
 	var xhr = getXMLHttpRequest(); 
 	var add=e.target.value;
@@ -35,13 +39,15 @@ function removeCartLign(e){
 
 	xhr.send(null);
 }
+
+
 function changeTotal(total, index){
 	var subTotal=document.getElementById("total"+index);
 	var newPrice =(subTotal.getAttribute("data_price")*total).toFixed(2);
 	subTotal.textContent=newPrice;
-	
 	updateTotal();
 }
+
 
 function removeTr(index){
 	var cartHeader=document.querySelector("#cart span");
@@ -54,6 +60,7 @@ function removeTr(index){
 }
 
 function updateTotal(){
+	
 	var allSubTotal=document.getElementsByClassName("subtotal");
 	var greatTotal=document.getElementById("total");
 	var add=0;

@@ -1,0 +1,128 @@
+index.php
+	Le controller principal. Il gere la connection à la base de données et récupère les informations en GET pour appeller le controller necessaire et la bonne action. 
+
+*****************************	
+Les Controllers :
+
+	Les controllers sont tous des singletons. ça m'est utile pour pouvoir ranger une seule fois dans des variables les informations dont j'aurais besoin. 
+	Par exemple, productController a une variable product qui contient tout les objets product, avec des informations sur leur catégorie qui ne sont pas présentes dans leur table de base de donnée.  
+	
+	
+	***
+	userController
+	
+		getInstance($db); -> création ou récupération du singleton
+		
+		login() -> redirection page de log
+		
+		doLogin() -> selection du user dans la base de données selon son email et son password. Creation et hydratation de l'user s'il existe
+		
+		logout() -> destruction de session
+		
+		create() -> redirection page de creation de compte
+		
+		doCreate() -> verifie que tous les champs sont remplis, récupere tous les emails afin de verifier qu'il n'y a pas de doublon. Si c'est bon, crée une nouvelle entrée dans la base de donnée via le userManager
+		
+		modif() -> redirection vers page de modification des informations de l'utilsatateur (quand on clique sur son nom dans le header).
+		
+		update() -> verifie que tous les champs sont remplis a part password. si oui, updatela variable de session["user'] et la base de donnée via le userManager.  
+		
+		private test_field( $ignore ) -> verifie que tous les champs ont été rempli. Ignore le champs $ignore. return array ou false.
+		
+		notFound() -> renvoie sur page 404
+		
+		
+		
+	***	
+	productController
+	
+		private __construct($db) -> appel unique à la fonction createProducts();
+		
+		private createProducts()-> récupère tous les produits de la base de donnée et les transforme en objets avec leur nom de category.
+		
+		private findCategory( $id ) -> fait appel au categoryController pour récuperer le nom de la catégorie $id
+		
+		addToCart() -> récupere le produit à ajouter en GET et l'ajoute à $_SESSION['cart'], qu'il crée si la session n'existe pas encore.
+		
+		displayAll( $cat ) -> récupère tous les produits qui sont de la categorie $cat
+		
+		display() -> recupère toutes les informations d'un objet produit. Recupere aussi 4 produits en random pour les afficher en bas de page ("Vous pourriez aimer...")
+		
+		private random( $id_reserved ) -> récupère 4 produits différends qui n'ont pas l'id $id_reserved
+		
+	
+	***
+	CategoryController
+		
+		private createCategories() -> fonction appellée à la création de l'instance. Crée les objets catégory et les stocke dans un tableau
+		
+		display()-> récupère toutes les catégories
+		
+		displayOne() -> recupère la catégorie appellée en GET  et crée une nouvelle instance de productController pour afficher tous les produits de cette catégorie
+		
+		getOneCategory( $id ) -> retourne l'objet category d'id $id
+	
+
+	***	
+	AdminController
+	
+		listUser() -> recupere tous les users dans la base de donnée. Si l'utilisateur n'est pas admin, renvoi sur 403
+		
+	
+	***
+	CardController
+	
+		Le panier est enregistré dans une variable de session $_SESSION['card'] qui est un tableau à clé : id du produit et quantity qui est initialisé à 1
+
+		
+		display() -> récupère via le productController les produits ajoutés au panier
+		
+		update() ->modifie la quantité d'un produit dans la session
+		
+		remove() -> supprime le produit concerné dans la variable de session
+		
+		checkout() -> si l'utilisateur s'est déjà connecté, le renvoi vers la page de check, sinon vers la page de log
+		
+		
+		L'affichage du panier est surtout géré en javascript et ajax dans js/cartQty.js
+		
+		
+			
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
